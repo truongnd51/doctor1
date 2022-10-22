@@ -38,13 +38,18 @@ public class DoctorController {
     }
 
     public Doctor updateDoctor() throws Exception {
+        Doctor u = null;
+        try{
         String code = Validation.getStringByRegex("Enter Code: ", "Please enter character only!", "[A-Za-z0-9]+");
         doctorInputer = new DoctorInputer();
         doctorInputer.inputDoctorUpdate(code);
         Doctor d = doctorInputer.getDoctor();
         
-        return doctorManager.updateDoctor(code, d);
-
+        u= doctorManager.updateDoctor(code, d);
+        } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                    }
+return u;
     }
 
     public Doctor deleteDoctor() throws Exception {

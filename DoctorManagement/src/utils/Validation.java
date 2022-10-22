@@ -14,6 +14,7 @@ import java.util.Scanner;
  * @author duytr
  */
 public class Validation {
+    private static Doctor d;
 
     private final static Scanner in = new Scanner(System.in);
 
@@ -27,24 +28,30 @@ public class Validation {
             }
         }
     }
+
     public static int getInt2(String mess, String errorNumberFormat, int min, int max) {
         while (true) {
-            int ret = Integer.parseInt(getStringByRegex2(mess, errorNumberFormat, "[0-9]+"));
-            if (ret < min || ret > max) {
-                System.err.println("Please enter number in rage [" + min + ", " + max + "]");
+            String str = getStringByRegex2(mess, errorNumberFormat, "[0-9]+");
+            if (!str.isEmpty()) {
+                int ret = Integer.parseInt(str);
+                if (ret < min || ret > max) {
+                    System.err.println("Please enter number in rage [" + min + ", " + max + "]");
+                } else {
+                    return ret;
+                }
             } else {
-                return ret;
+                return -1;
             }
         }
     }
-    
+
     public static String getStringByRegex(String mess, String error, String regex) {
         Scanner scan = new Scanner(System.in);
-        String output = null;
+        String output;
         while (true) {
             System.out.print(mess);
             output = scan.nextLine();
-            if (output.matches(regex)||output.isEmpty()) {
+            if (output.matches(regex)) {
                 return output;
             } else {
                 System.err.println(error);
@@ -54,13 +61,15 @@ public class Validation {
 
     public static String getStringByRegex2(String mess, String error, String regex) {
         Scanner scan = new Scanner(System.in);
-        String output = null;
+        String output;
         while (true) {
             System.out.print(mess);
             output = scan.nextLine();
             if (output.matches(regex)||output.isEmpty()) {
                 return output;
-            } else {
+            }
+            
+            else {
                 System.err.println(error);
             }
         }

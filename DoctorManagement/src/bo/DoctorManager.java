@@ -34,11 +34,19 @@ public class DoctorManager {
         return search(code) != -1;
     }
 
-
     public Doctor updateDoctor(String code, Doctor d) throws Exception {
         int i = search(code);
+        Doctor u = getDoctorByCode(code);
         if (i != -1) {
-            return listDoctor.set(i, d);
+            if (d.getName().isEmpty()) {
+                d.setName(u.getName());
+            } else if (d.getSpecialization().isEmpty()) {
+                d.setSpecialization(u.getSpecialization());
+            } else if (d.getAvailability() == -1) {
+                d.setAvailability(u.getAvailability());
+            } else {
+                return listDoctor.set(i, d);
+            }
         }
         throw new Exception("Doctor not found!");
 
@@ -72,7 +80,6 @@ public class DoctorManager {
         return -1;
     }
 
- 
     public Doctor getDoctorByCode(String code) throws Exception {
         int i = search(code);
         if (i != -1) {

@@ -35,10 +35,11 @@ public class DoctorInputer {
     private void inputInformationUpdate() {
 //        String name = d.getName();
 //        String specialization = d.getSpecialization();
-//        int Availability = d.getAvailability();
+//        int availability = d.getAvailability();
+//        String str = 
         d.setName(Validation.getStringByRegex2("Enter Name: ", "Please enter character only!", "[A-Za-z ]+"));
         d.setSpecialization(Validation.getStringByRegex2("Enter Specialization: ", "Please enter character only!", "[A-Za-z ]+"));
-        d.setAvailability(Validation.getInt("Enter Availability: ", "Please enter Integer Number!", 0, Integer.MAX_VALUE));
+        d.setAvailability(Validation.getInt2("Enter Availability: ", "Please enter Integer Number!", 0, Integer.MAX_VALUE));
        
     }
 
