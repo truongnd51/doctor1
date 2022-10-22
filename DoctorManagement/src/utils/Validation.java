@@ -14,7 +14,6 @@ import java.util.Scanner;
  * @author duytr
  */
 public class Validation {
-    private static Doctor d;
 
     private final static Scanner in = new Scanner(System.in);
 
@@ -65,11 +64,9 @@ public class Validation {
         while (true) {
             System.out.print(mess);
             output = scan.nextLine();
-            if (output.matches(regex)||output.isEmpty()) {
+            if (output.matches(regex) || output.isEmpty()) {
                 return output;
-            }
-            
-            else {
+            } else {
                 System.err.println(error);
             }
         }

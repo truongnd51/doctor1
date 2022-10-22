@@ -36,20 +36,20 @@ public class DoctorManager {
 
     public Doctor updateDoctor(String code, Doctor d) throws Exception {
         int i = search(code);
-        Doctor u = getDoctorByCode(code);
         if (i != -1) {
+            Doctor currentDoctor = getDoctorByCode(code);
             if (d.getName().isEmpty()) {
-                d.setName(u.getName());
-            } else if (d.getSpecialization().isEmpty()) {
-                d.setSpecialization(u.getSpecialization());
-            } else if (d.getAvailability() == -1) {
-                d.setAvailability(u.getAvailability());
-            } else {
-                return listDoctor.set(i, d);
+                d.setName(currentDoctor.getName());
             }
+            if (d.getSpecialization().isEmpty()) {
+                d.setSpecialization(currentDoctor.getSpecialization());
+            }
+            if (d.getAvailability() == -1) {
+                d.setAvailability(currentDoctor.getAvailability());
+            }
+            return listDoctor.set(i, d);
         }
         throw new Exception("Doctor not found!");
-
     }
 
     public Doctor deleteDoctor(String code) throws Exception {
